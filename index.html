@@ -1,181 +1,258 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Salary vs Inflation — Does Your Raise Beat Inflation?</title>
-  <meta name="description" content="Find out if your salary raise actually beats inflation. Enter your salary, raise percentage, and inflation rate for an instant deterministic result." />
-  <meta name="google-adsense-account" content="ca-pub-7744853829365165" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div class="wrap">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Salary vs Inflation — Does Your Raise Beat Inflation?</title>
+        <meta
+            name="description"
+            content="Find out if your salary raise actually beats inflation. Enter your salary, raise percentage, and inflation rate for an instant deterministic result."
+        />
+        <meta name="google-adsense-account" content="ca-pub-7744853829365165" />
+        <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="wrap">
+            <header>
+                <div class="brand">
+                    <h1>Salary vs Inflation</h1>
+                    <p>Does your raise actually beat inflation?</p>
+                </div>
+                <nav>
+                    <a href="index.html" class="active">Home</a>
+                    <a href="faq.html">FAQ</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="legal.html">Legal</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+            </header>
 
-    <header>
-      <div class="brand">
-        <h1>Salary vs Inflation</h1>
-        <p>Does your raise actually beat inflation?</p>
-      </div>
-      <nav>
-        <a href="index.html" class="active">Home</a>
-        <a href="faq.html">FAQ</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="legal.html">Legal</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </header>
+            <!-- Sponsor banner (inactive — enable when sponsor confirmed) -->
+            <div
+                class="sponsor-banner"
+                style="display: none"
+                aria-hidden="true"
+            >
+                <span class="sponsor-label">Sponsored</span>
+                <span class="sponsor-content"
+                    ><!-- Sponsor content here --></span
+                >
+            </div>
 
-    <!-- Sponsor banner (inactive — enable when sponsor confirmed) -->
-    <div class="sponsor-banner" style="display:none;" aria-hidden="true">
-      <span class="sponsor-label">Sponsored</span>
-      <span class="sponsor-content"><!-- Sponsor content here --></span>
-    </div>
+            <!-- AdSense top slot -->
+            <div class="ad-slot">
+                <ins
+                    class="adsbygoogle"
+                    style="display: block"
+                    data-ad-client="ca-pub-7744853829365165"
+                    data-ad-slot="TOP_AD_SLOT_ID"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"
+                ></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
 
-    <!-- AdSense top slot -->
-    <div class="ad-slot">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-7744853829365165"
-           data-ad-slot="TOP_AD_SLOT_ID"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+            <div class="grid">
+                <section class="card">
+                    <h2>Check your raise against inflation</h2>
+                    <p>
+                        Enter your current salary, raise percentage, and the
+                        inflation rate to see if your purchasing power is
+                        actually going up or down.
+                    </p>
 
-    <div class="grid">
-      <section class="card">
-        <h2>Check your raise against inflation</h2>
-        <p>Enter your current salary, raise percentage, and the inflation rate to see if your purchasing power is actually going up or down.</p>
+                    <label for="salary">Current Annual Salary ($)</label>
+                    <input
+                        type="text"
+                        inputmode="decimal"
+                        id="salary"
+                        placeholder="e.g. 65000"
+                    />
 
-        <label for="salary">Current Annual Salary ($)</label>
-        <input type="text" inputmode="decimal" id="salary" placeholder="e.g. 65000" />
+                    <label for="raise">Your Raise (%)</label>
+                    <input
+                        type="text"
+                        inputmode="decimal"
+                        id="raise"
+                        placeholder="e.g. 3.5"
+                    />
 
-        <label for="raise">Your Raise (%)</label>
-        <input type="text" inputmode="decimal" id="raise" placeholder="e.g. 3.5" />
+                    <label for="inflation">Inflation Rate (%)</label>
+                    <input
+                        type="text"
+                        inputmode="decimal"
+                        id="inflation"
+                        placeholder="e.g. 4.2"
+                    />
 
-        <label for="inflation">Inflation Rate (%)</label>
-        <input type="text" inputmode="decimal" id="inflation" placeholder="e.g. 4.2" />
+                    <button class="btn" onclick="calculate()">
+                        Check My Raise
+                    </button>
 
-        <button class="btn" onclick="calculate()">Check My Raise</button>
+                    <div class="result" id="result" style="display: none">
+                        <div id="badge" class="badge">—</div>
+                        <p id="summary" class="big"></p>
+                        <p id="detail" class="explain"></p>
+                        <div id="breakdown"></div>
+                    </div>
 
-        <div class="result" id="result" style="display:none;">
-          <div id="badge" class="badge">—</div>
-          <p id="summary" class="big"></p>
-          <p id="detail" class="explain"></p>
-          <div id="breakdown"></div>
+                    <p class="mini">
+                        Disclaimer: This is an informational planning tool.
+                        Results are based on the numbers you enter and do not
+                        constitute financial advice.
+                    </p>
+                </section>
+
+                <aside class="card">
+                    <h2>What this tool does</h2>
+                    <p>
+                        A raise that sounds good on paper may not keep up with
+                        rising prices. This tool calculates your real purchasing
+                        power change so you know exactly where you stand.
+                    </p>
+                    <ul>
+                        <li>Compares nominal raise vs real purchasing power</li>
+                        <li>Shows exact dollar gain or loss in real terms</li>
+                        <li>Deterministic math — no opinions, just numbers</li>
+                        <li>Instant result, no account needed</li>
+                    </ul>
+                    <div class="sep"></div>
+                    <p class="mini">
+                        No accounts, no tracking, no subscriptions. Runs
+                        entirely in your browser.
+                    </p>
+
+                    <!-- Sidebar sponsor slot (inactive — enable when sponsor confirmed) -->
+                    <div
+                        class="sponsor-sidebar"
+                        style="display: none"
+                        aria-hidden="true"
+                    >
+                        <span class="sponsor-label">Sponsored</span>
+                        <!-- Sponsor content here -->
+                    </div>
+                </aside>
+            </div>
+
+            <!-- AdSense bottom slot -->
+            <div class="ad-slot">
+                <ins
+                    class="adsbygoogle"
+                    style="display: block"
+                    data-ad-client="ca-pub-7744853829365165"
+                    data-ad-slot="BOTTOM_AD_SLOT_ID"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"
+                ></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+            <footer class="foot">
+                <div class="sep"></div>
+                <div class="network-links related-tools"></div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy</a> &nbsp;|&nbsp;
+                    <a href="legal.html">Legal</a> &nbsp;|&nbsp;
+                    <a href="faq.html">FAQ</a> &nbsp;|&nbsp;
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-meta">
+                    © <span id="year"></span> SalaryVsInflation.com
+                </div>
+                <p class="sponsor-line">
+                    Sponsored placements &amp; partnerships:
+                    <a href="mailto:partnerships@calc-hq.com"
+                        >partnerships@calc-hq.com</a
+                    >
+                </p>
+            </footer>
         </div>
 
-        <p class="mini">Disclaimer: This is an informational planning tool. Results are based on the numbers you enter and do not constitute financial advice.</p>
-      </section>
+        <script>
+            function calculate() {
+                const salary = parseFloat(
+                    document.getElementById("salary").value.replace(/,/g, ""),
+                );
+                const raise = parseFloat(
+                    document.getElementById("raise").value,
+                );
+                const inflation = parseFloat(
+                    document.getElementById("inflation").value,
+                );
 
-      <aside class="card">
-        <h2>What this tool does</h2>
-        <p>A raise that sounds good on paper may not keep up with rising prices. This tool calculates your real purchasing power change so you know exactly where you stand.</p>
-        <ul>
-          <li>Compares nominal raise vs real purchasing power</li>
-          <li>Shows exact dollar gain or loss in real terms</li>
-          <li>Deterministic math — no opinions, just numbers</li>
-          <li>Instant result, no account needed</li>
-        </ul>
-        <div class="sep"></div>
-        <p class="mini">No accounts, no tracking, no subscriptions. Runs entirely in your browser.</p>
+                const result = document.getElementById("result");
+                const badge = document.getElementById("badge");
+                const summary = document.getElementById("summary");
+                const detail = document.getElementById("detail");
+                const breakdown = document.getElementById("breakdown");
 
-        <!-- Sidebar sponsor slot (inactive — enable when sponsor confirmed) -->
-        <div class="sponsor-sidebar" style="display:none;" aria-hidden="true">
-          <span class="sponsor-label">Sponsored</span>
-          <!-- Sponsor content here -->
-        </div>
-      </aside>
-    </div>
+                if (
+                    isNaN(salary) ||
+                    isNaN(raise) ||
+                    isNaN(inflation) ||
+                    salary <= 0
+                ) {
+                    badge.className = "badge no";
+                    badge.textContent = "Missing input";
+                    summary.textContent =
+                        "Please enter your salary, raise %, and inflation rate.";
+                    detail.textContent = "All three fields are required.";
+                    breakdown.innerHTML = "";
+                    result.style.display = "block";
+                    return;
+                }
 
-    <!-- AdSense bottom slot -->
-    <div class="ad-slot">
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-7744853829365165"
-           data-ad-slot="BOTTOM_AD_SLOT_ID"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+                const newSalary = salary * (1 + raise / 100);
+                const nominalIncrease = newSalary - salary;
+                const realValue = newSalary / (1 + inflation / 100);
+                const realChange = realValue - salary;
+                const realChangePct = (realChange / salary) * 100;
 
-    <footer class="foot">
-      <div class="sep"></div>
-      <div class="network-links related-tools"><strong>Related Tools:</strong> <a href="https://bizdaychecker.com" target="_blank" rel="noopener">BizDayChecker.com</a> &nbsp;•&nbsp; <a href="https://bankcutoffchecker.com" target="_blank" rel="noopener">BankCutoffChecker.com</a></div>
-      <div class="footer-links">
-        <a href="privacy.html">Privacy</a> &nbsp;|&nbsp;
-        <a href="legal.html">Legal</a> &nbsp;|&nbsp;
-        <a href="faq.html">FAQ</a> &nbsp;|&nbsp;
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="footer-meta">© <span id="year"></span> SalaryVsInflation.com</div>
-      <p class="sponsor-line">Sponsored placements &amp; partnerships: <a href="mailto:partnerships@calc-hq.com">partnerships@calc-hq.com</a></p>
-    </footer>
+                if (realChange > 0) {
+                    badge.className = "badge ok";
+                    badge.textContent = "✓ Your raise beats inflation";
+                    summary.textContent = `Success! Your purchasing power increased by $${realChange.toLocaleString(undefined, { maximumFractionDigits: 0 })} in real terms.`;
+                    detail.textContent = `A ${raise}% raise outpaces ${inflation}% inflation — your real purchasing power grew by ${realChangePct.toFixed(2)}%.`;
+                } else if (realChange < 0) {
+                    badge.className = "badge no";
+                    badge.textContent = "✕ Your raise lost to inflation";
+                    summary.textContent = `Warning: Even with a $${nominalIncrease.toLocaleString(undefined, { maximumFractionDigits: 0 })} raise, you can buy fewer goods than last year.`;
+                    detail.textContent = `A ${raise}% raise does not keep up with ${inflation}% inflation — your real purchasing power fell by ${Math.abs(realChangePct).toFixed(2)}%.`;
+                } else {
+                    badge.className = "badge neutral";
+                    badge.textContent =
+                        "→ Your raise exactly matches inflation";
+                    summary.textContent =
+                        "Your purchasing power is unchanged in real terms.";
+                    detail.textContent = `Your raise of ${raise}% exactly matches the inflation rate of ${inflation}%.`;
+                }
 
-  </div>
-
-  <script>
-  function calculate() {
-    const salary = parseFloat(document.getElementById('salary').value.replace(/,/g, ''));
-    const raise = parseFloat(document.getElementById('raise').value);
-    const inflation = parseFloat(document.getElementById('inflation').value);
-
-    const result = document.getElementById('result');
-    const badge = document.getElementById('badge');
-    const summary = document.getElementById('summary');
-    const detail = document.getElementById('detail');
-    const breakdown = document.getElementById('breakdown');
-
-    if (isNaN(salary) || isNaN(raise) || isNaN(inflation) || salary <= 0) {
-      badge.className = 'badge no';
-      badge.textContent = 'Missing input';
-      summary.textContent = 'Please enter your salary, raise %, and inflation rate.';
-      detail.textContent = 'All three fields are required.';
-      breakdown.innerHTML = '';
-      result.style.display = 'block';
-      return;
-    }
-
-    const newSalary = salary * (1 + raise / 100);
-    const nominalIncrease = newSalary - salary;
-    const realValue = newSalary / (1 + inflation / 100);
-    const realChange = realValue - salary;
-    const realChangePct = (realChange / salary) * 100;
-
-    if (realChange > 0) {
-      badge.className = 'badge ok';
-      badge.textContent = '✓ Your raise beats inflation';
-      summary.textContent = `Success! Your purchasing power increased by $${realChange.toLocaleString(undefined, {maximumFractionDigits: 0})} in real terms.`;
-      detail.textContent = `A ${raise}% raise outpaces ${inflation}% inflation — your real purchasing power grew by ${realChangePct.toFixed(2)}%.`;
-    } else if (realChange < 0) {
-      badge.className = 'badge no';
-      badge.textContent = '✕ Your raise lost to inflation';
-      summary.textContent = `Warning: Even with a $${nominalIncrease.toLocaleString(undefined, {maximumFractionDigits: 0})} raise, you can buy fewer goods than last year.`;
-      detail.textContent = `A ${raise}% raise does not keep up with ${inflation}% inflation — your real purchasing power fell by ${Math.abs(realChangePct).toFixed(2)}%.`;
-    } else {
-      badge.className = 'badge neutral';
-      badge.textContent = '→ Your raise exactly matches inflation';
-      summary.textContent = 'Your purchasing power is unchanged in real terms.';
-      detail.textContent = `Your raise of ${raise}% exactly matches the inflation rate of ${inflation}%.`;
-    }
-
-    breakdown.innerHTML = `
+                breakdown.innerHTML = `
       <div class="sep"></div>
       <div class="mini">
-        Current salary: <span class="k">$${salary.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> &nbsp;•&nbsp;
-        New salary: <span class="k">$${newSalary.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> &nbsp;•&nbsp;
-        Nominal increase: <span class="k">$${nominalIncrease.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span><br/>
-        Real value (inflation-adjusted): <span class="k">$${realValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span> &nbsp;•&nbsp;
-        Real change: <span class="k">${realChange >= 0 ? '+' : ''}$${realChange.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+        Current salary: <span class="k">$${salary.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span> &nbsp;•&nbsp;
+        New salary: <span class="k">$${newSalary.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span> &nbsp;•&nbsp;
+        Nominal increase: <span class="k">$${nominalIncrease.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span><br/>
+        Real value (inflation-adjusted): <span class="k">$${realValue.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span> &nbsp;•&nbsp;
+        Real change: <span class="k">${realChange >= 0 ? "+" : ""}$${realChange.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
       </div>`;
 
-    result.style.display = 'block';
-  }
+                result.style.display = "block";
+            }
 
-  document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+            document.getElementById("year").textContent =
+                new Date().getFullYear();
+        </script>
 
-  <script src="network.js"></script>
-</body>
+        <script src="network.js"></script>
+    </body>
 </html>
