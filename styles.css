@@ -289,6 +289,58 @@ li {
     white-space: nowrap;
 }
 
+/* Content sections (AdSense content depth) */
+.calculator-explanation {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-top: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid #e8e3dc;
+    line-height: 1.7;
+}
+
+.calculator-explanation h2 {
+    margin: 0 0 14px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.calculator-explanation h3 {
+    margin: 18px 0 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.calculator-explanation p {
+    margin: 0 0 12px;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.calculator-explanation ul,
+.calculator-explanation ol {
+    margin: 0 0 12px;
+    padding-left: 22px;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.calculator-explanation li {
+    margin-bottom: 6px;
+}
+
+.calculator-explanation a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.calculator-explanation a:hover {
+    text-decoration: underline;
+}
+
 /* Legal pages */
 .card.legal h3 {
     margin: 20px 0 6px;
