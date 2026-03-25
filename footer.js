@@ -23,7 +23,9 @@
         return x && x.live === true && typeof x.url === "string" && typeof x.name === "string";
       })
       .filter(function (x) {
-        return getHostname(x.url) !== currentHost;
+        var host = getHostname(x.url);
+        if (host === "calc-hq.com") return false;
+        return host !== currentHost;
       });
   }
 
