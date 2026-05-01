@@ -1,327 +1,202 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Salary vs Inflation Calculator | SalaryVsInflation.com</title>
-        <meta
-            name="description"
-            content="Find out if your salary raise actually beats inflation. Enter your salary, raise percentage, and inflation rate for an instant deterministic result."
-        />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://salaryvsinflation.com/"/>
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Salary vs Inflation Calculator | SalaryVsInflation.com" />
-        <meta property="og:description" content="Find out if your salary raise actually beats inflation. Enter your salary, raise percentage, and inflation rate for an instant deterministic result." />
-        <meta property="og:url" content="https://salaryvsinflation.com/" />
-        <meta name="google-adsense-account" content="ca-pub-7744853829365165" />
-        <script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165"
-            crossorigin="anonymous"
-        ></script>
-        <link rel="stylesheet" href="styles.css" />
-        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Salary vs Inflation Calculator",
-            "url": "https://salaryvsinflation.com/",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "All",
-            "description": "Online salary vs inflation calculator that estimates how a raise compares to inflation and calculates the inflation-adjusted value of a new salary."
-        }
-        </script>
-    </head>
-    <body>
-        <div class="wrap">
-            <header>
-                <div class="brand">
-                    <h1>Salary vs Inflation</h1>
-                    <p>Does your raise actually beat inflation?</p>
-                </div>
-                <nav>
-                    <a href="index.html" class="active">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="faq.html">FAQ</a>
-                    <a href="privacy.html">Privacy</a>
-                    <a href="legal.html">Legal</a>
-                    <a href="contact.html">Contact</a>
-                </nav>
-            </header>
-
-            <!-- Sponsor (inactive by default) -->
-            <div id="sponsor" class="sponsor-slot is-off" aria-label="Sponsor"></div>
-            <!-- Ads (collapsed by default) -->
-            <div id="adTop" class="ad-slot is-off" aria-label="Advertisement"></div>
-
-            <div class="grid">
-                <section class="card">
-                    <h2>Check your raise against inflation</h2>
-                    <p>
-                        Enter your current salary, raise percentage, and the
-                        inflation rate to see if your purchasing power is
-                        actually going up or down.
-                    </p>
-
-                    <label for="salary">Current Annual Salary ($)</label>
-                    <input
-                        type="text"
-                        inputmode="decimal"
-                        id="salary"
-                        placeholder="e.g. 65000"
-                    />
-
-                    <label for="raise">Your Raise (%)</label>
-                    <input
-                        type="text"
-                        inputmode="decimal"
-                        id="raise"
-                        placeholder="e.g. 3.5"
-                    />
-
-                    <label for="inflation">Inflation Rate (%)</label>
-                    <input
-                        type="text"
-                        inputmode="decimal"
-                        id="inflation"
-                        placeholder="e.g. 4.2"
-                    />
-
-                    <button class="btn" onclick="calculate()">
-                        Check My Raise
-                    </button>
-
-                    <div class="result" id="result" style="display: none">
-                        <div id="badge" class="badge">—</div>
-                        <p id="summary" class="big"></p>
-                        <p id="detail" class="explain"></p>
-                        <div id="breakdown"></div>
-                    </div>
-
-                    <p class="mini">
-                        Disclaimer: This is an informational planning tool.
-                        Results are based on the numbers you enter and do not
-                        constitute financial advice.
-                    </p>
-                </section>
-
-                <aside class="card">
-                    <h2>What this tool does</h2>
-                    <p>
-                        A raise that sounds good on paper may not keep up with
-                        rising prices. This tool calculates your real purchasing
-                        power change so you know exactly where you stand.
-                    </p>
-                    <ul>
-                        <li>Compares nominal raise vs real purchasing power</li>
-                        <li>Shows exact dollar gain or loss in real terms</li>
-                        <li>Deterministic math — no opinions, just numbers</li>
-                        <li>Instant result, no account needed</li>
-                    </ul>
-                    <div class="sep"></div>
-                    <p class="mini">
-                        No accounts, no tracking, no subscriptions. Runs
-                        entirely in your browser.
-                    </p>
-
-                    <!-- Sidebar sponsor slot (inactive — enable when sponsor confirmed) -->
-                    <div
-                        class="sponsor-sidebar"
-                        style="display: none"
-                        aria-hidden="true"
-                    >
-                        <span class="sponsor-label">Sponsored</span>
-                        <!-- Sponsor content here -->
-                    </div>
-                </aside>
-            </div>
-
-            <div id="adBottom" class="ad-slot is-off" aria-label="Advertisement"></div>
-
-            <section class="calculator-explanation">
-                <h2>What This Calculator Does</h2>
-                <p>This salary vs inflation calculator determines whether your pay raise actually increases your purchasing power or whether rising prices have eroded its value.</p>
-                <p>You enter your current annual salary, your raise percentage, and the current inflation rate. The calculator computes your new salary in nominal terms, then adjusts it for inflation to show your real purchasing power change — in both percentage and dollar terms.</p>
-                <p>Results are estimates for planning purposes based on the numbers you enter. They do not constitute financial advice.</p>
-            </section>
-
-            <section class="calculator-explanation">
-                <h2>Example Calculation</h2>
-                <ul>
-                    <li><strong>Current salary:</strong> $65,000</li>
-                    <li><strong>Raise:</strong> 3%</li>
-                    <li><strong>Inflation rate:</strong> 4.2%</li>
-                </ul>
-                <p><strong>Step 1 — New salary:</strong> $65,000 × 1.03 = <strong>$66,950</strong></p>
-                <p><strong>Step 2 — Inflation-adjusted value:</strong> $66,950 ÷ 1.042 = <strong>$64,251</strong></p>
-                <p><strong>Step 3 — Real change:</strong> $64,251 − $65,000 = <strong>−$749</strong></p>
-                <p>Even though the paycheck grew by $1,950, purchasing power <em>fell</em> by $749 in real terms. The raise did not beat inflation.</p>
-            </section>
-
-            <section class="calculator-explanation">
-                <h2>Formula</h2>
-                <p><strong>New Salary = Current Salary × (1 + Raise%)</strong></p>
-                <p><strong>Real Value = New Salary ÷ (1 + Inflation%)</strong></p>
-                <p><strong>Real Change = Real Value − Current Salary</strong></p>
-                <p>If Real Change is positive, your raise beats inflation. If negative, inflation outpaced your raise and your purchasing power declined.</p>
-            </section>
-
-            <section class="calculator-explanation">
-                <h2>Calculation Methodology</h2>
-                <p>This calculator uses the standard real wage formula derived from the Consumer Price Index (CPI) methodology published by the U.S. Bureau of Labor Statistics (BLS).</p>
-                <ol>
-                    <li>Apply the raise percentage to the current salary to get the nominal new salary.</li>
-                    <li>Deflate the new salary by the inflation rate using the formula: New Salary ÷ (1 + Inflation Rate).</li>
-                    <li>Subtract the original salary from the inflation-adjusted value to find the real dollar change.</li>
-                    <li>Divide the real change by the original salary and multiply by 100 to get the real percentage change.</li>
-                </ol>
-                <p>The inflation rate you enter should be the annualized CPI figure for the relevant period. The BLS publishes monthly CPI data at <strong>bls.gov</strong>. Use the most recent 12-month figure for the most accurate result.</p>
-            </section>
-
-            <section class="calculator-explanation">
-                <h2>Common Use Cases</h2>
-                <ul>
-                    <li><strong>Evaluating a job offer</strong> — determine whether a raise in a new role actually improves your standard of living</li>
-                    <li><strong>Annual review negotiation</strong> — use real purchasing power data to support requests for inflation-matching raises</li>
-                    <li><strong>Budgeting</strong> — understand whether your income is keeping pace with the cost of living before planning expenses</li>
-                    <li><strong>Freelance rate setting</strong> — check whether your current rate has lost real value over time and needs adjustment</li>
-                    <li><strong>Historical comparison</strong> — enter a past raise and inflation figure to see how your real wages changed over a prior period</li>
-                </ul>
-            </section>
-
-            <section class="calculator-explanation">
-                <h2>Frequently Asked Questions</h2>
-
-                <h3>What inflation rate should I use?</h3>
-                <p>Use the most recent 12-month CPI-U figure published by the U.S. Bureau of Labor Statistics at bls.gov. For other countries, use the equivalent national statistics agency figure.</p>
-
-                <h3>My raise is higher than inflation — does that mean I'm better off?</h3>
-                <p>Yes, in real purchasing power terms. A raise that exceeds inflation means you can buy more goods and services than before. The calculator shows the exact dollar and percentage gain.</p>
-
-                <h3>Why does a 3% raise not beat 3% inflation?</h3>
-                <p>A 3% raise and 3% inflation exactly cancel out — your purchasing power stays flat. The calculator will show a real change of $0 and display a neutral result.</p>
-
-                <h3>Does this include taxes?</h3>
-                <p>No. This tool uses gross (pre-tax) salary figures. Your net change in take-home pay will differ based on your tax bracket and deductions.</p>
-
-                <h3>Is this tool accurate?</h3>
-                <p>The math is deterministic and correct based on the numbers you enter. The quality of the result depends entirely on the inflation rate you use — always source from a current, official publication.</p>
-            </section>
-
-            <section class="calculator-explanation">
-                <h2>Related Calculators</h2>
-                <ul>
-                    <li><a href="https://hourly2salarycalc.com/" target="_blank" rel="noopener">Hourly to Salary Calculator</a> — convert hourly wages to annual, monthly, and weekly salary equivalents</li>
-                    <li><a href="https://1099vsw2calc.com/" target="_blank" rel="noopener">1099 vs W-2 Calculator</a> — compare take-home pay as a contractor vs salaried employee after taxes</li>
-                    <li><a href="https://freelanceincomecalc.com/" target="_blank" rel="noopener">Freelance Income Calculator</a> — estimate gross freelance earnings from your hourly rate and schedule</li>
-                    <li><a href="https://payrolldatechecker.com/" target="_blank" rel="noopener">Payroll Date Checker</a> — calculate payroll processing and submit dates around holidays</li>
-                </ul>
-            </section>
-
-            <footer class="foot">
-                <div class="sep"></div>
-                <div class="network-links related-tools" id="relatedTools"><strong>Related Tools:</strong> <span class="related-tools-links"></span></div>
-                <div class="footer-resources"><strong>Resources:</strong> <a href="https://calc-hq.com" target="_blank" rel="noopener">Financial Calculator Hub</a></div>
-                <div class="footer-links">
-                    <a href="about.html">About</a> &nbsp;|&nbsp;
-                    <a href="privacy.html">Privacy</a> &nbsp;|&nbsp;
-                    <a href="legal.html">Legal</a> &nbsp;|&nbsp;
-                    <a href="faq.html">FAQ</a> &nbsp;|&nbsp;
-                    <a href="contact.html">Contact</a>
-                </div>
-                <div class="footer-meta">
-                    © <span id="year"></span> SalaryVsInflation.com
-                </div>
-                <p class="sponsor-line">
-                    Sponsored placements &amp; partnerships:
-                    <a href="mailto:partnerships@calc-hq.com"
-                        >partnerships@calc-hq.com</a
-                    >
-                </p>
-            </footer>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Salary vs Inflation Calculator | SalaryVsInflation.com</title>
+  <meta name="description" content="Find out if your salary raise actually beats inflation. Enter your salary, raise percentage, and inflation rate for an instant result.">
+  <link rel="canonical" href="https://salaryvsinflation.com/"/>
+  <meta name="robots" content="index, follow">
+  <meta name="google-adsense-account" content="ca-pub-7744853829365165">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Salary vs Inflation Calculator | SalaryVsInflation.com">
+  <meta property="og:description" content="Find out if your salary raise actually beats inflation. Enter your salary, raise percentage, and inflation rate.">
+  <meta property="og:url" content="https://salaryvsinflation.com/"/>
+  <meta property="og:site_name" content="SalaryVsInflation.com">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7744853829365165" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css?v=layout-repair-0501">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Salary vs Inflation Calculator",
+  "url": "https://salaryvsinflation.com/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "description": "Online salary vs inflation calculator that estimates how a raise compares to inflation and calculates the inflation-adjusted value of a new salary.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <h1>Salary vs Inflation</h1>
+      <p>Does your raise actually beat inflation?</p>
+    </div>
+    <div data-site-header-nav></div>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h2>Check your raise against inflation</h2>
+    <p>Enter your current salary, raise percentage, and
+      inflation rate to see if your purchasing power is
+      really growing.</p>
+    <div class="form-card">
+      <form id="calcForm" onsubmit="event.preventDefault(); calculate();">
+        <div class="field">
+          <label for="salary">Current Annual Salary (USD)</label>
+          <input id="salary" type="text" inputmode="decimal" placeholder="e.g. 75,000" value="75000">
         </div>
+        <div class="field">
+          <label for="raise">Raise (%)</label>
+          <input id="raise" type="number" step="0.1" min="0" placeholder="e.g. 5" value="5">
+        </div>
+        <div class="field">
+          <label for="inflation">Inflation Rate (%)</label>
+          <input id="inflation" type="number" step="0.1" min="0" placeholder="e.g. 4.2" value="4.2">
+        </div>
+        <button type="submit" class="btn">Calculate</button>
+      </form>
+    </div>
+    <div id="result" style="display:none;">
+      <div id="badge" class="badge neutral">→</div>
+      <p id="summary"></p>
+      <p id="detail"></p>
+      <div id="breakdown"></div>
+    </div>
+  </section>
 
-        <script>
-            function calculate() {
-                const salary = parseFloat(
-                    document.getElementById("salary").value.replace(/,/g, ""),
-                );
-                const raise = parseFloat(
-                    document.getElementById("raise").value,
-                );
-                const inflation = parseFloat(
-                    document.getElementById("inflation").value,
-                );
+  <section class="section-card">
+    <h2>What This Calculator Gives You</h2>
+    <p>Your company just announced a 4% raise. Sounds decent — until you check the latest CPI report and see inflation running at 5.2%. That raise isn't a raise at all. Your paycheck goes up, but everything costs more, and you end up with less purchasing power than before.</p>
+    <p>This calculator makes that gap visible. Enter your current salary, your raise percentage, and the inflation rate. You'll see your new salary in nominal dollars, the inflation-adjusted value of that salary, and whether your purchasing power actually went up or down — in both percentage and dollar terms.</p>
+    <p>No tax calculations, no investment projections, no compound growth models. Just a clean comparison between what your employer says you're getting and what that money can actually buy.</p>
+  </section>
 
-                const result = document.getElementById("result");
-                const badge = document.getElementById("badge");
-                const summary = document.getElementById("summary");
-                const detail = document.getElementById("detail");
-                const breakdown = document.getElementById("breakdown");
+  <section class="section-card">
+    <h2>Raise vs Inflation: Why the Difference Matters</h2>
+    <p>A nominal raise is the number on your compensation letter — "3% increase effective January 1." A real raise is what that 3% buys you after prices have changed. If inflation is 3%, your nominal raise and real raise are the same — you break even. If inflation is higher, you took a pay cut even though your salary went up.</p>
+    <p>The math is straightforward but the impact compounds. At $75,000 with a 3% raise ($2,250 more per year), your new salary is $77,250. With 4.5% inflation, that $77,250 only buys what $73,923 bought last year. You're $1,077 behind — your salary increased but your life got more expensive.</p>
+    <p>This isn't theoretical. Between 2021 and 2023, U.S. inflation outpaced average wage growth for 24 consecutive months. Millions of workers got raises that didn't keep up with grocery prices, rent increases, and energy costs. The raise felt real on paper but wasn't real at the store.</p>
+  </section>
 
-                if (
-                    isNaN(salary) ||
-                    isNaN(raise) ||
-                    isNaN(inflation) ||
-                    salary <= 0
-                ) {
-                    badge.className = "badge no";
-                    badge.textContent = "Missing input";
-                    summary.textContent =
-                        "Please enter your salary, raise %, and inflation rate.";
-                    detail.textContent = "All three fields are required.";
-                    breakdown.innerHTML = "";
-                    result.style.display = "block";
-                    return;
-                }
+  <section class="section-card">
+    <h2>Example Calculation: $75,000 Salary, 5% Raise, 4.2% Inflation</h2>
+    <table class="example-table">
+      <tr><th>Step</th><th>Calculation</th><th>Amount</th></tr>
+      <tr><td>Current salary</td><td></td><td>$75,000</td></tr>
+      <tr><td>Raise</td><td>5% of $75,000</td><td>+$3,750</td></tr>
+      <tr><td>New nominal salary</td><td>$75,000 + $3,750</td><td>$78,750</td></tr>
+      <tr><td>Inflation-adjusted value</td><td>$78,750 ÷ 1.042</td><td>$75,576</td></tr>
+      <tr><td>Real purchasing power change</td><td>$75,576 − $75,000</td><td>+$576</td></tr>
+      <tr><td>Real change percentage</td><td>$576 ÷ $75,000</td><td>+0.77%</td></tr>
+    </table>
+    <p>You got a 5% raise, but after inflation, your purchasing power only increased by 0.77%. That $3,750 nominal gain shrinks to $576 in real terms — the other $3,174 is eaten by higher prices.</p>
+  </section>
 
-                const newSalary = salary * (1 + raise / 100);
-                const nominalIncrease = newSalary - salary;
-                const realValue = newSalary / (1 + inflation / 100);
-                const realChange = realValue - salary;
-                const realChangePct = (realChange / salary) * 100;
+  <section class="section-card">
+    <h2>How Purchasing Power Changes</h2>
+    <p>Purchasing power is what your salary can buy. When inflation rises, each dollar buys less — even if your salary stays the same. The calculator measures this by adjusting your new salary backward using the inflation rate.</p>
+    <p>The formula: <strong>Real salary = New salary ÷ (1 + inflation rate)</strong></p>
+    <p>At 4.2% inflation, $78,750 in today's dollars has the purchasing power of $75,576 in last year's dollars. That's the number that tells you whether you're actually ahead.</p>
+    <p>This matters most for fixed costs. Rent that jumped from $1,800 to $1,876/month ($912/year more) eats most of that $576 real gain. Groceries up 5% on an $800/month budget add another $480. Your 5% raise didn't cover the increase in just two expense categories.</p>
+  </section>
 
-                if (realChange > 0) {
-                    badge.className = "badge ok";
-                    badge.textContent = "✓ Your raise beats inflation";
-                    summary.textContent = `Success! Your purchasing power increased by $${realChange.toLocaleString(undefined, { maximumFractionDigits: 0 })} in real terms.`;
-                    detail.textContent = `A ${raise}% raise outpaces ${inflation}% inflation — your real purchasing power grew by ${realChangePct.toFixed(2)}%.`;
-                } else if (realChange < 0) {
-                    badge.className = "badge no";
-                    badge.textContent = "✕ Your raise lost to inflation";
-                    summary.textContent = `Warning: Even with a $${nominalIncrease.toLocaleString(undefined, { maximumFractionDigits: 0 })} raise, you can buy fewer goods than last year.`;
-                    detail.textContent = `A ${raise}% raise does not keep up with ${inflation}% inflation — your real purchasing power fell by ${Math.abs(realChangePct).toFixed(2)}%.`;
-                } else {
-                    badge.className = "badge neutral";
-                    badge.textContent =
-                        "→ Your raise exactly matches inflation";
-                    summary.textContent =
-                        "Your purchasing power is unchanged in real terms.";
-                    detail.textContent = `Your raise of ${raise}% exactly matches the inflation rate of ${inflation}%.`;
-                }
+  <section class="section-card">
+    <h2>When a Raise Is Actually a Pay Cut</h2>
+    <p>It happens more often than people think. Any time inflation exceeds your raise percentage, your purchasing power declines — even though your salary technically increased.</p>
+    <p><strong>$70,000 salary, 2.5% raise, 3.8% inflation:</strong></p>
+    <table class="example-table">
+      <tr><th>Step</th><th>Amount</th></tr>
+      <tr><td>New nominal salary</td><td>$71,750</td></tr>
+      <tr><td>Inflation-adjusted value</td><td>$69,123</td></tr>
+      <tr><td>Real change</td><td>−$877</td></tr>
+      <tr><td>Real change percentage</td><td>−1.25%</td></tr>
+    </table>
+    <p>Your salary went up by $1,750, but you can buy $877 less than before. That 2.5% raise was a 1.25% pay cut in disguise.</p>
+    <p>This pattern is especially common in years with high inflation and employer-wide "standard" raises. Companies often announce a flat percentage increase — 3% for everyone — without accounting for the fact that 3% doesn't keep pace when CPI is running at 4–6%. The workers who feel it most are those in the middle of the salary range, where fixed costs consume a larger share of income.</p>
+  </section>
 
-                breakdown.innerHTML = `
-      <div class="sep"></div>
-      <div class="mini">
-        Current salary: <span class="k">$${salary.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span> &nbsp;•&nbsp;
-        New salary: <span class="k">$${newSalary.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span> &nbsp;•&nbsp;
-        Nominal increase: <span class="k">$${nominalIncrease.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span><br/>
-        Real value (inflation-adjusted): <span class="k">$${realValue.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span> &nbsp;•&nbsp;
-        Real change: <span class="k">${realChange >= 0 ? "+" : ""}$${realChange.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-      </div>`;
+  <section class="section-card">
+    <h2>Salary vs After-Tax Salary</h2>
+    <p>This calculator works with gross salary — the number before taxes. But your real purchasing power depends on after-tax income, which is what actually reaches your bank account.</p>
+    <p>At $75,000 with single filing status, federal income tax and FICA take roughly $15,000, leaving about $60,000 in after-tax salary. A 5% raise to $78,750 adds $3,750 in gross income, but after the 22% marginal bracket and FICA, you keep roughly $2,800 of it. Combined with 4.2% inflation, your after-tax purchasing power gain is even smaller than the $576 the calculator shows.</p>
+    <p>If you want to see the full after-tax impact of a raise, run both your current and new salary through <a href="https://aftertaxsalarycalc.com" target="_blank" rel="noopener">AfterTaxSalaryCalc.com</a> and compare the after-tax numbers. That gives you the real-world delta — what actually changes in your monthly budget.</p>
+  </section>
 
-                result.style.display = "block";
-            }
+  <section class="section-card">
+    <h2>Real-World Scenarios</h2>
+    <ul>
+      <li><strong>The standard raise that doesn't keep up.</strong> You earn $65,000 and get a 3% company-wide raise ($1,950). Inflation is 4.5%. Your inflation-adjusted salary: $65,933. Real gain: $933 on paper, but after taxes on the additional income, you're roughly breaking even. Your rent went up $125/month ($1,500/year). You're behind.</li>
+      <li><strong>The promotion raise.</strong> You jump from $80,000 to $95,000 — an 18.75% increase. Inflation is 3.8%. Your inflation-adjusted salary: $91,522. Real gain: $11,522. That's a genuinely strong raise even after inflation. But if the new role requires a longer commute ($3,600/year in gas and wear) and doesn't come with remote work, the net benefit shrinks to under $8,000.</li>
+      <li><strong>The COLA in a high-inflation year.</strong> A government worker earning $72,000 gets a 2.7% cost-of-living adjustment ($1,944). Actual inflation that year: 6.2%. Inflation-adjusted salary: $69,812. Real loss: $2,188. The "cost-of-living adjustment" didn't adjust for the actual cost of living.</li>
+      <li><strong>Switching jobs for salary growth.</strong> You leave a $70,000 job for one paying $85,000 (21.4% increase). Inflation is 3.5%. Inflation-adjusted: $82,125. Real gain: $12,125. But after taxes at the higher bracket, you keep roughly $9,100 of that — still a meaningful upgrade, especially if benefits are comparable.</li>
+    </ul>
+  </section>
 
-            document.getElementById("year").textContent =
-                new Date().getFullYear();
-        </script>
+  <section class="section-card">
+    <h2>How to Use These Numbers</h2>
+    <ul>
+      <li><strong>Before accepting a raise or promotion.</strong> Run your current and new salary through this calculator with the latest CPI inflation rate. If the real change is negative, you know the raise won't cover higher costs — and you can negotiate from a data-backed position.</li>
+      <li><strong>When budgeting for next year.</strong> Use the inflation-adjusted salary as your real income for budgeting, not the nominal number. That's the figure your rent, groceries, and bills will actually be measured against.</li>
+      <li><strong>Comparing job offers across years.</strong> If you received an offer in January and are reconsidering in June after inflation data updated, recalculate. The same nominal salary buys less six months later if CPI has risen.</li>
+      <li><strong>Evaluating whether to stay or leave.</strong> If your current employer's raises consistently trail inflation by 1–2%, the gap compounds. Over three years at 3% raises vs 4.5% inflation, a $75,000 salary loses about $4,700 in real purchasing power — money you never get back unless you change jobs.</li>
+    </ul>
+  </section>
 
-        <script src="config.js"></script>
-        <script src="ads.js"></script>
-        <script src="network.js"></script>
-        <script src="footer.js"></script>
-    </body>
+  <section class="section-card">
+    <h2>FAQ</h2>
+    <h3>What inflation rate should I use?</h3>
+    <p>Use the most recent year-over-year CPI-U rate from the Bureau of Labor Statistics (BLS.gov). This is the headline inflation number reported in the news.</p>
+    <h3>Does this include taxes?</h3>
+    <p>No. This calculator uses gross salary. Use AfterTaxSalaryCalc.com to see after-tax impacts.</p>
+    <h3>Why does my real raise feel smaller than the calculator shows?</h3>
+    <p>Because your personal inflation rate may be higher than the national CPI. Housing, healthcare, and food often rise faster than the headline number.</p>
+    <h3>Can I use monthly salary instead of annual?</h3>
+    <p>Enter your annual salary for consistent results. Multiply your monthly salary by 12 first.</p>
+    <h3>What if inflation is negative (deflation)?</h3>
+    <p>The calculator handles negative inflation. In a deflationary environment, your purchasing power increases even without a raise.</p>
+  </section>
+
+  <section class="section-card">
+    <h2>Data Sources</h2>
+    <ul>
+      <li><strong>Consumer Price Index (CPI):</strong> Bureau of Labor Statistics — primary U.S. inflation measure, published monthly</li>
+      <li><strong>CPI-U:</strong> All Urban Consumers index, the most widely cited inflation figure</li>
+      <li><strong>Inflation rate:</strong> Year-over-year percentage change in CPI-U, seasonally adjusted</li>
+      <li><strong>Purchasing power formula:</strong> Real value = Nominal value ÷ (1 + inflation rate), standard economic adjustment</li>
+      <li><strong>Average annual wage increases:</strong> BLS National Compensation Survey</li>
+      <li><strong>Historical inflation data:</strong> FRED (Federal Reserve Economic Data), Bureau of Labor Statistics</li>
+    </ul>
+    <p>Users should enter the most recent annual inflation rate available from BLS.gov for accurate results.</p>
+  </section>
+
+  <section class="section-card">
+    <h2>Limitations</h2>
+    <p><strong>Gross salary only.</strong> This calculator uses pre-tax salary figures. After-tax purchasing power will differ depending on federal bracket, filing status, and state income tax.</p>
+    <p><strong>Single inflation rate.</strong> You enter one inflation rate. Real inflation varies by category — medical care, housing, and food often outpace the headline CPI number.</p>
+    <p><strong>No category-specific inflation.</strong> If your rent jumped 8% but overall CPI is 3.5%, this calculator uses 3.5% and understates your actual cost increase. For category-specific adjustments, use BLS CPI data for your spending profile.</p>
+    <p><strong>No regional adjustment.</strong> Inflation in San Francisco and inflation in Memphis are not the same. This tool uses a single national rate.</p>
+    <p><strong>No compound projection.</strong> The calculator shows a one-year snapshot. It doesn't project cumulative inflation over multiple years or compound salary growth.</p>
+    <p><strong>No tax calculation.</strong> Use AfterTaxSalaryCalc.com to see how the raise affects your after-tax income.</p>
+    <p><strong>Not financial advice.</strong> This is a planning estimate. Consult a financial advisor for compensation and career decisions.</p>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap" id="site-footer"></div>
+</footer>
+<script src="config.js"></script>
+<script src="network.js"></script>
+<script src="ads.js"></script>
+<script src="app.js"></script>
+</body>
 </html>
